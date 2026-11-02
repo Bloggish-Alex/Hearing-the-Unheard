@@ -20,12 +20,59 @@ class Note:
 
 
 @dataclass(frozen=True)
+class Period:
+    """
+    One musical bar, labelled and placed on the source time axis.
+    """
+
+    label: str
+    start: float
+    end: float
+
+
+@dataclass(frozen=True)
+class Series:
+    """
+    One value per bar, with optional intra-bar detail in `slots`.
+    """
+
+    id: str
+    values: list[float | None]
+    label: str = ""
+    unit: str = ""
+    slots: list[list[float | None]] | None = None
+
+
+@dataclass(frozen=True)
+class Annotation:
+    """
+    A point on the source time axis as marker in the presentation.
+    """
+
+    at: float
+    label: str
+
+
+@dataclass(frozen=True)
 class Section:
     label: str
     start: int
     end: int
     anchor: float | None = None
     mean: float | None = None
+
+
+@dataclass
+class Dataset:
+    """
+    Parsed input data, before any musical mapping.
+    """
+
+    periods: list[Period]
+    series: dict[str, Series]
+    sections: list[Section] = field(default_factory=list)
+    annotations: list[Annotation] = field(default_factory=list)
+    meta: dict = field(default_factory=dict)
 
 
 @dataclass
