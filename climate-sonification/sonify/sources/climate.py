@@ -47,7 +47,7 @@ class ClimateSource:
         series = {
             "temp": Series(
                 id="temp",
-                values=[sum(months) / len(months) for _, months in rows],
+                values=[sum(months) / len(months) for _, months in rows], # mean of monthly data
                 label="Temperature anomaly",
                 unit="°C",
                 slots=[months for _, months in rows]

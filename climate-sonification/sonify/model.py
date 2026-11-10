@@ -54,6 +54,18 @@ class Annotation:
 
 
 @dataclass(frozen=True)
+class Timing:
+    """
+    Musical clock used by the composer and renderers.
+    """
+
+    ticks_per_quarter: int
+    eighth: int
+    bar_ticks: int
+    section_bars: int
+
+
+@dataclass(frozen=True)
 class Section:
     label: str
     start: int

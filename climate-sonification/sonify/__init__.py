@@ -6,6 +6,7 @@ from .model import (
     Period,
     Section,
     Series,
+    Timing,
     Voice,
 )
 from .scales import Scale
@@ -19,5 +20,6 @@ __all__ = [
     "Scale",
     "Section",
     "Series",
+    "Timing",
     "Voice",
 ]
