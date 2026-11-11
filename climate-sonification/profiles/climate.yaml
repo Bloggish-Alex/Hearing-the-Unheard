@@ -1,0 +1,39 @@
+name: climate
+title: One Hundred Years of Warming
+
+data:
+  directory: ../data
+  start_year: 1925
+  end_year: 2024
+
+timing:
+  ticks_per_quarter: 480
+  eighth: 240 # 12 1/8 per bar, 6 1/4 per bar
+  bar_ticks: 2880 
+  section_bars: 10
+
+scales:
+  temperature:
+    root: 57
+    steps: [0, 3, 5, 7, 10]
+    lo: -0.6
+    hi: 1.5
+    max_degree: 10
+
+# defines tracks in generated music
+voices:
+  - id: 0
+    name: melody
+    generator: slots_melody # predefined and hardcoded, don't change the name
+    series: temp  # refer to dataset loaded from csv file: {"temp": {}, }
+    scale: temperature  # refer to scales.temperature
+    velocity: {base: 60, span: 55, floor: 45, ceiling: 118}
+    split_velocity: {drop: 8, floor: 40}
+    rhythm:
+      split_delta: 0.22
+      split_offset: 0.08
+      hold_delta: 0.06
+      hold_delta_step: 0.05
+      hold_max: 3
+      staccato_delta: 0.15
+      duration_factor: 0.55
